@@ -1,0 +1,69 @@
+<table border="1">
+    <tr>
+        <td>Image</td>
+        <td>Name</td>
+        <td>Price</td>
+        <td>Qty</td>
+        <td>Total</td>
+        <td>Action</td>
+
+    </tr>
+
+        <tbody id="cartdata">
+
+        </tbody>
+</table>
+
+<script type="text/javascript">
+    const viewData = () => {
+        
+        let allcart = JSON.parse(localStorage.getItem('cart'));
+        let tbl  = "";
+        allcart.map((val)=>{
+            tbl += `
+                    <tr>
+                        <td><img src='${val.image}' width="100"/></td>
+                        <td>${val.name}</td>
+                        <td>${val.price}</td>
+                        <td><input type="text" id="qty${val.id}" value="${val.qty}"/></td>
+                        <td>${val.price * val.qty}</td>
+                        <td>
+                            <button onclick="deleteData(${val.id})">Delete</button> ||
+                            <button onclick="editdata(${val.id})">Edit</button>
+                        </td>
+                    </tr>
+                `
+        })
+        document.getElementById('cartdata').innerHTML = tbl;
+    }
+    viewData();
+    const deleteData = (layersid) => {
+        
+        let allcart = JSON.parse(localStorage.getItem('cart'));
+    
+        let ans = allcart.filter((val)=>{
+            return val.id != layersid;
+        })
+        localStorage.setItem('cart',JSON.stringify(ans));
+        alert("Can You Delete Layer Skin ?");
+        viewData();
+    }
+
+    const editdata = (layersid) =>{
+        let qty = document.getElementById('qty'+layersid).value;
+        
+        let allcartdata = JSON.parse(localStorage.getItem('cart'));
+        
+        for(let i in allcartdata){
+            if(allcartdata[i].id == layersid){
+                allcartdata[i].qty = qty;
+        }
+       localStorage.setItem('cart',JSON.stringify(allcartdata));
+        }
+        viewData();
+    }
+
+    const sum = () =>{
+        let cart = JSON.parse(localStorage.getItem('cart'));
+    }
+</script>

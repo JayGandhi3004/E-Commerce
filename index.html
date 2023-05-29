@@ -1,0 +1,227 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div style="padding:10px;background-color: #4942E4; color: #C4B0FF;">
+    <div  style="float: left;width: 50%;">
+      <h1 style="float: left; margin-left: 50px;">Layers Shop</h1>
+    </div>
+     <div  style="float: right; margin: 9px 50px 0 0;">
+      <button onclick="cart()" class="btn" style="background-color: #C4B0FF; color: black;">Cart</button>
+     </div> 
+    <div style="clear: both;"></div>
+  </div>
+
+<div style="margin-top: 25px;" class="container">
+    <div class="row" id="record">
+        
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+let data = [
+        {
+            id : 111,
+            name : "Samsung Galaxy S23 Ultra Chaos",
+            price : "599.00",
+            image : "images/samsung-galaxy-s23-ultra.jpg",
+            qty : 1,
+            description : "This Skin is Awesome",
+            category : "Samsung"
+        },
+        {
+            id : 112,
+            name : "iPhone 13 Pro Max Hulk Silhouette",
+            price : "999.00",
+            image : "images/iphone-13-pro-max-hulk.jpg",
+            qty : 1,
+            description : "This Skin is Awesome",
+            category : "Iphone"
+        },
+        {
+            id : 113,
+            name : "Nothing Phone 1 Avengers Monogram",
+            price : "399.00",
+            image : "images/Nothing.jpg",
+            qty : 1,
+            description : "This Skin is Awesome",
+            category : "Nothing"
+        },
+        {
+            id : 114,
+            name : "Vivo X80 Cybermind",
+            price : "599.00",
+            image : "images/vivo-x80.jpg",
+            qty : 1,
+            description : "This Skin is Awesome",
+            category : "Vivo"
+        },
+        {
+            id : 115,
+            name : "Vivo V25 Pro Dr Strange",
+            price : "299.00",
+            image : "images/vivo-v25-pro.png",
+            qty : 1,
+            description : "This Skin is Awesome",
+            category : "Vivo"
+        },
+
+        {
+            id : 116,
+            name : "Samsung Galaxy S22 Ultra Ironman",
+            price : "599.00",
+            image : "images/samsung-galaxy-s22-ultra.jpg",
+            qty : 1,
+            description : "This Skin is Awesome",
+            category : "Samsung"
+        },
+        {
+            id : 117,
+            name : "Asus Rog phone 5 DJ Panda",
+            price : "199.00",
+            image : "images/asus-rog-5.jpg",
+            qty : 1,
+            description : "This Skin is Awesome",
+            category : "Asus"
+        },
+        {
+            id : 118,
+            name : "iPhone 14 Pro Max Ironman Gaze",
+            price : "999.00",
+            image : "images/iphone-14-pro-max.jpg",
+            qty : 1,
+            description : "This Skin is Awesome",
+            category : "Iphone"
+        },
+        {
+            id : 119,
+            name : "Iqoo Z5 Space Blueprint",
+            price : "199.00",
+            image : "images/iqoo-z-5.jpg",
+            qty : 1,
+            description : "This Skin is Awesome",
+            category : "iQoo"
+        },
+        {
+            id : 120,
+            name : "iPhone 12 Pro Max Captain America",
+            price : "799.00",
+            image : "images/iphone-12-pro-max.jpg",
+            qty : 1,
+            description : "This Skin is Awesome",
+            category : "Iphone"
+        },
+        {
+            id : 121,
+            name : "Samsung Galaxy S20 Fe Astro Rainbow",
+            price : "499.00",
+            image : "images/samsung-galaxy-s20.jpg",
+            qty : 1,
+            description : "This Skin is Awesome",
+            category : "Samsung"
+        },
+        {
+            id : 122,
+            name : "Vivo Nex S Wolverine On Bike",
+            price : "299.00",
+            image : "images/vivo-nex-s.jpg",
+            qty : 1,
+            description : "This Skin is Awesome",
+            category : "Vivo"
+        },
+        {
+            id : 123,
+            name : "Iqoo 9 Pro The Incredible Hulk",
+            price : "199.00",
+            image : "images/iqoo-9-pro.jpg",
+            qty : 1,
+            description : "This Skin is Awesome",
+            category : "iQoo"
+        },
+        {
+            id : 124,
+            name : "Iqoo 7 5G Grafitti",
+            price : "199.00",
+            image : "images/iqoo-7-5G-grafitti.jpg",
+            qty : 1,
+            description : "This Skin is Awesome",
+            category : "iQoo"
+        },
+        {
+            id : 125,
+            name : "Asus Rog phone 3 Oceanic",
+            price : "199.00",
+            image : "images/asus-rog-3.jpg",
+            qty : 1,
+            description : "This Skin is Awesome",
+            category : "Asus"
+        },
+    ];
+
+    const viewData = () => {
+
+        localStorage.setItem('layers',JSON.stringify(data));
+        tbl = "";
+        data.map((val,i)=>{
+            tbl += `
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="${val.image}" width="200" class="card-img-top" alt="">
+                        <div class="card-body">
+                        <h5 class="card-title">${val.name}</h5>
+                        <h5 class="card-title">Rs :- ${val.price}</h5>
+                        <h4 class="card-text">${val.description}</h4>
+                        <p>Company :- ${val.category}</p>
+                        <button type="button" id="none${val.id}" onclick="order(${val.id})"  class="btn btn-success">Order</button>
+                        </div>
+                    </div>
+                </div>
+            `
+        })
+        document.getElementById('record').innerHTML = tbl;
+        }
+    viewData();
+
+    const order = (layersid) => {
+        
+        let cart = [];
+
+        let alllayers = JSON.parse(localStorage.getItem('layers'));
+
+        alllayers.map((val)=>{
+           if(val.id == layersid)
+           {
+              let obj = {
+                id : val.id,
+                name : val.name,
+                qty : val.qty,
+                price : val.price,
+                image : val.image
+            }
+
+              if(localStorage.getItem('cart') === null  || localStorage.getItem('cart') ===undefined)
+              {
+                cart.push(obj)
+                localStorage.setItem('cart',JSON.stringify(cart));
+              }
+              else{
+                  let val = JSON.parse(localStorage.getItem('cart'));
+                  val.push(obj);
+                  localStorage.setItem('cart',JSON.stringify(val));
+              } 
+           }
+       })
+       if(layersid){
+        document.getElementById('none'+layersid).style.display = "none";
+       }
+       alert("order successfully")
+    }
+
+    const cart = () => {
+        window.location.href = "cart.html";
+    }
+
+    
+
+
+</script>
