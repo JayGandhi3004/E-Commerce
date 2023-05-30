@@ -10,7 +10,7 @@
     <form class="login-container">
       <p><input type="otp" id="pass" placeholder="New Password"></p>
       <p><input type="otp" id="cpass" placeholder="Confirm Password"></p>
-      <p><input type="submit" onclick="login()" value="Login"></p>
+      <p><input type="button" onclick="login()" value="Login"></p>
     </form>
   </div>
 
@@ -38,7 +38,7 @@
             }
             alert("Password Changed");
             localStorage.removeItem('otp');
-            window.location.href = "index.html";
+            window.location.href = "log-in.html";
         }
         else{
             alert("Password Doesn't Match");

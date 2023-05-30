@@ -1,20 +1,17 @@
 <link rel="stylesheet" href="./css/style.css">
 
-<a href="index.html"></a>
-
 <div class="login">
    <div class="login-triangle"></div>
    
-   <h2 class="login-header">Log in</h2>
+   <h2 class="login-header">Lost Password1</h2>
  
    <form class="login-container">
      <p><input type="text" id="email" placeholder="Email"></p>
-     <p><input type="submit" onclick="recover()" value="Email Verify"></p>
+     <p><input type="button" onclick="recover()" value="Email Verify"></p>
    </form>
  </div>
 
 
- 
  <script type="text/javascript">
    const recover = () => {
        let useremail = document.getElementById('email').value;
@@ -38,7 +35,7 @@
        })
        if (check == 1) {
            alert('Your OTP :-' + otp);
-          window.location.href=""
+          window.location.href = "otp.html"
        }
        else {
            alert('Email is not register');
