@@ -1,0 +1,51 @@
+ <link rel="stylesheet" href="./css/style.css">
+
+ <a href="index.html"></a>
+
+<div class="login">
+    <div class="login-triangle"></div>
+    
+    <h2 class="login-header">Log in</h2>
+  
+    <form class="login-container">
+      <p><input type="email" id="email" placeholder="Email"></p>
+      <p><input type="password" id="pass" placeholder="Password"></p>
+      <a href="forget-pass.html">Forgot Password</a>
+      <p><input type="submit" onclick="login()" value="Log in"></p>
+    </form>
+  </div>
+
+
+  
+  <script type="text/javascript">
+    function login() {
+        let email = document.getElementById('email').value;
+        let pass = document.getElementById('pass').value;
+
+
+        let val = JSON.parse(localStorage.getItem('project'));
+        console.log(val);
+        let check = 0;
+        val.map((v) => {
+            if (v.useremail == email && v.userpassword == pass) {
+                check = 1;
+                let obj = {
+                    userid: v.userid,
+                    username: v.name,
+                    useremail: v.useremail,
+                    userpass: v.pass,
+                }
+                localStorage.setItem('checkUserLogin', JSON.stringify(obj));
+                
+            }
+        })
+        if (check == 1) {
+            alert("user login succesfully")
+            window.location.href="index.html"
+        } else {
+            alert("Invalid Email or Password"); 
+        }
+    }
+
+    
+</script>

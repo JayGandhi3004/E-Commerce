@@ -34,6 +34,18 @@
                     </tr>
                 `
         })
+        let total = 0;
+        allcart.map((val)=>{
+            total += val.price * val.qty;
+        })
+
+        tbl +=  `
+                    <tr>
+                        <td colspan="5" style="text-align: end;"><strong>Total :- ${total}</strong></td>
+                    </tr>
+                `
+
+
         document.getElementById('cartdata').innerHTML = tbl;
     }
     viewData();
@@ -66,4 +78,6 @@
     const sum = () =>{
         let cart = JSON.parse(localStorage.getItem('cart'));
     }
+
+
 </script>

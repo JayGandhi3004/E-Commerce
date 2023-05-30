@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="./css/style.css">
+
+
+<div class="login">
+    <div class="login-triangle"></div>
+    
+    <h2 class="login-header">Sign Up</h2>
+  
+    <form class="login-container">
+      <p><input type="name" id="name" placeholder="Name"></p>
+      <p><input type="email" id="email" placeholder="Email"></p>
+      <p><input type="password" id="pass" placeholder="Password"></p>
+      <p><input type="Comfirm password" id="cpass" placeholder="Comfirm Password"></p>
+      <p><input type="submit" onclick="save()" value="Sign Up"></p>
+    </form>
+  </div>
+
+
+
+  <script type="text/javascript">
+    let data = [];
+
+    function save(){
+      let name = document.getElementById('name').value;
+      let email = document.getElementById('email').value;
+      let pass = document.getElementById('pass').value;
+      let cpass = document.getElementById('cpass').value;
+
+        if(!name || !email || !pass || !cpass){
+            alert('Please Fill Out Required Fields');
+            return false;
+        }
+
+        if (pass == cpass) {
+            let obj = {
+            userid: Math.floor(Math.random() * 100),
+            username: name,
+            useremail: email,
+            userpassword: pass,
+        }
+            if (localStorage.getItem('project') === null || localStorage.getItem('project') === undefined) {
+                data.push(obj);
+                localStorage.setItem('project', JSON.stringify(data));
+            }
+            else {
+               let val = JSON.parse(localStorage.getItem('project'));
+               val.push(obj);
+               localStorage.setItem('project', JSON.stringify(val));
+           }
+        } else {
+            alert("Password Not Match");
+        }
+
+
+
+        alert("Record Add Sucessfully");
+        document.getElementById('name').value = "";
+        document.getElementById('email').value = "";
+        document.getElementById('pass').value = "";
+        document.getElementById('cpass').value = "";
+    }
+    
+
+  </script>
+
+

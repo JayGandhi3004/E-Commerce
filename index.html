@@ -6,6 +6,7 @@
     </div>
      <div  style="float: right; margin: 9px 50px 0 0;">
       <button onclick="cart()" class="btn" style="background-color: #C4B0FF; color: black;">Cart</button>
+      <button onclick="logout()" class="btn" style="background-color: #C4B0FF; color: black;">Log Out</button>
      </div> 
     <div style="clear: both;"></div>
   </div>
@@ -170,7 +171,8 @@ let data = [
                         <div class="card-body">
                         <h5 class="card-title">${val.name}</h5>
                         <h5 class="card-title">Rs :- ${val.price}</h5>
-                        <h4 class="card-text">${val.description}</h4>
+                        <h4
+                         class="card-text">${val.description}</h4>
                         <p>Company :- ${val.category}</p>
                         <button type="button" id="none${val.id}" onclick="order(${val.id})"  class="btn btn-success">Order</button>
                         </div>
@@ -221,7 +223,10 @@ let data = [
         window.location.href = "cart.html";
     }
 
-    
+    function logout(){
+        localStorage.removeItem('checkUserLogin');
+        window.location.href = "log-in.html";
+    }
 
 
 </script>

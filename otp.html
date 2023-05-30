@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="./css/style.css">
+
+ <!-- <a href="index.html"></a> -->
+
+<div class="login">
+    <div class="login-triangle"></div>
+    
+    <h2 class="login-header">OTP verify</h2>
+  
+    <form class="login-container">
+      <p><input type="otp" id="otp" placeholder="Enter OTP"></p>
+      <p><input type="submit" onclick="verify()" value="verify"></p>
+    </form>
+  </div>
+
+  <script  type="text/javascript" >
+
+    const verify = () => {
+            let otp = document.getElementById('otp').value;
+            let otpdata = JSON.parse(localStorage.getItem('otp'));
+
+            if(otp == otpdata.otp){
+                window.location.href = "pass.html";
+            }
+            else{
+                alert("Invalid OTP");
+            }
+        }
+
+  </script>

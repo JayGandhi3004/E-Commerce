@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="./css/style.css">
+
+ <a href="index.html"></a>
+
+<div class="login">
+    <div class="login-triangle"></div>
+    
+    <h2 class="login-header">New Password</h2>
+  
+    <form class="login-container">
+      <p><input type="otp" id="pass" placeholder="New Password"></p>
+      <p><input type="otp" id="cpass" placeholder="Confirm Password"></p>
+      <p><input type="submit" onclick="login()" value="Login"></p>
+    </form>
+  </div>
+
+  <script type="text/javascript">
+
+    let checkotp = JSON.parse(localStorage.getItem('otp'));
+    if(!checkotp){
+        alert("Lalla OTP Dal");
+        window.location.href = "index.html";
+    }
+
+    const login = () =>{
+        let data = JSON.parse(localStorage.getItem('otp'));
+        let email= data.useremail;
+        let pass = document.getElementById('pass').value;
+        let cpass = document.getElementById('cpass').value;
+
+        if(pass == cpass){
+            let val =JSON.parse(localStorage.getItem('project'));
+            for(let i in val){
+                if(val[i].useremail == email){
+                    val[i].userpassword = pass
+                    localStorage.setItem('project',JSON.stringify(val));
+                }
+            }
+            alert("Password Changed");
+            localStorage.removeItem('otp');
+            window.location.href = "index.html";
+        }
+        else{
+            alert("Password Doesn't Match");
+        }
+    }
+
+</script>
